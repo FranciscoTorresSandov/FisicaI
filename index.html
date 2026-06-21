@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Evidencias | Física Aplicada al Software</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2c5282;
+            --accent: #3182ce;
+            --light: #f7fafc;
+            --dark: #1a202c;
+            --gray: #718096;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navbar */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+        
+        /* Sections */
+        section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+        
+        /* Topic Card */
+        .topic-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .topic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .topic-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .week-badge {
+            background-color: var(--light);
+            color: var(--secondary);
+            padding: 0.35rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .subsection {
+            margin-bottom: 1.8rem;
+        }
+        
+        .subsection h4 {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .subsection h4::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent);
+            border-radius: 50%;
+        }
+        
+        .equation {
+            background-color: #f1f5f9;
+            padding: 1rem 1.3rem;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 1.05rem;
+            color: var(--dark);
+            border-left: 4px solid var(--accent);
+            margin: 0.8rem 0;
+        }
+        
+        .justification {
+            background-color: #f0fff4;
+            border-left: 4px solid #38a169;
+            padding: 1rem 1.3rem;
+            border-radius: 8px;
+        }
+        
+        .support-element {
+            background-color: #fffaf0;
+            border: 1px solid #ed8936;
+            border-radius: 8px;
+            padding: 1.2rem;
+            margin-top: 1rem;
+        }
+        
+        .support-element h5 {
+            color: #c05621;
+            margin-bottom: 0.6rem;
+            font-size: 1rem;
+        }
+        
+        /* Grid for multiple topics in same week */
+        .topics-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 900px) {
+            .topics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+            color: #4a5568;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <a href="#" class="logo">Portafolio Física</a>
+                <ul class="nav-links">
+                    <li><a href="#introduccion">Introducción</a></li>
+                    <li><a href="#semana2">Semana 2</a></li>
+                    <li><a href="#semana3">Semana 3</a></li>
+                    <li><a href="#semana4">Semana 4</a></li>
+                    <li><a href="#semana5">Semana 5</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="container">
+            <h1>Portafolio de Evidencias</h1>
+            <p>Física Aplicada al Desarrollo de Software</p>
+            <p style="margin-top: 1rem; font-size: 1rem; opacity: 0.9;">Avance 1 • Semanas 1-5 • Cinemática, Dinámica y Conservación</p>
+        </div>
+    </header>
+
+    <!-- Introducción -->
+    <section id="introduccion">
+        <div class="container">
+            <h2 class="section-title">Introducción</h2>
+            <div class="intro-text">
+                <p>Este portafolio documenta la aplicación práctica de los conceptos de física estudiados en clase 
+                al campo de la <strong>Ingeniería del Software</strong>. Cada entrada presenta un caso concreto 
+                donde el principio físico se utiliza en el desarrollo de videojuegos, simulaciones, motores físicos 
+                o sistemas interactivos, demostrando por qué el uso de modelos físicos reales aporta valor 
+                frente a soluciones simplificadas o precalculadas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEMANA 2 -->
+    <section id="semana2">
+        <div class="container">
+            <h2 class="section-title">Semana 2 • Cinemática</h2>
+            
+            <!-- Tema 1: Movimiento en 3 Dimensiones -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">1. Movimiento en 3 Dimensiones</h3>
+                    <span class="week-badge">Semana 2</span>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Ejemplo en Ingeniería de Software</h4>
+                    <p><strong>Caso específico:</strong> Actualización de posición de objetos en un motor de videojuegos 3D (Unity, Godot o motor propio) usando integración numérica de movimiento.</p>
+                    <p>En un juego 3D o simulador, la posición de un objeto (personaje, proyectil, vehículo) se actualiza cada frame considerando su velocidad y aceleración en los tres ejes (X, Y, Z).</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Concepto Físico Aplicado</h4>
+                    <div class="equation">
+                        r(t) = r₀ + v₀·t + ½·a·t²<br>
+                        o usando integración numérica (método de Euler):<br>
+                        v(t + Δt) = v(t) + a·Δt<br>
+                        r(t + Δt) = r(t) + v(t)·Δt
+                    </div>
+                    <p>Donde <strong>r</strong> es el vector de posición en 3D, <strong>v</strong> la velocidad y <strong>a</strong> la aceleración.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Justificación</h4>
+                    <div class="justification">
+                        <p>Usar el modelo físico real permite que los objetos respondan correctamente a fuerzas variables (gravedad, propulsión, viento, colisiones). Una alternativa no-física (posiciones precalculadas o animaciones fijas) no permite interacciones dinámicas ni respuesta a cambios en tiempo real del entorno.</p>
+                    </div>
+                </div>
+                
+                <div class="support-element">
+                    <h5>Elemento de Apoyo: Diagrama conceptual</h5>
+                    <p>Se recomienda incluir un diagrama que muestre un objeto en el espacio 3D con vectores de posición (r), velocidad (v) y aceleración (a) en los ejes X, Y y Z, junto con la trayectoria resultante.</p>
+                </div>
+            </div>
+
+            <!-- Tema 2: Movimiento Circular Uniforme -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">2. Movimiento Circular Uniforme</h3>
+                    <span class="week-badge">Semana 2</span>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Ejemplo en Ingeniería de Software</h4>
+                    <p><strong>Caso específico:</strong> Simulador de sistema solar o un juego donde una nave orbita alrededor de un planeta de forma constante.</p>
+                    <p>La nave mantiene velocidad tangencial constante mientras cambia continuamente de dirección, generando una trayectoria circular.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Concepto Físico Aplicado</h4>
+                    <div class="equation">
+                        v = ω · r<br>
+                        Período T = 2π / ω<br>
+                        Posición: x = r · cos(ωt), y = r · sin(ωt)
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Justificación</h4>
+                    <div class="justification">
+                        <p>Permite crear comportamientos realistas de órbitas y rotaciones. Usar animaciones predefinidas no permite que la nave responda a cambios de velocidad angular ni interactúe correctamente con otros cuerpos gravitacionales.</p>
+                    </div>
+                </div>
+                
+                <div class="support-element">
+                    <h5>Elemento de Apoyo: Simulación interactiva (recomendada)</h5>
+                    <p>Crear una pequeña simulación con Canvas donde el usuario pueda modificar el radio o la velocidad angular y observar cómo cambia la trayectoria circular en tiempo real.</p>
+                </div>
+            </div>
+
+            <!-- Tema 3: Fuerza Centripeta -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">3. Fuerza Centripeta</h3>
+                    <span class="week-badge">Semana 2</span>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Ejemplo en Ingeniería de Software</h4>
+                    <p><strong>Caso específico:</strong> Física de vehículos en un simulador de carreras (como en juegos tipo Forza o Assetto Corsa) o en un motor físico custom.</p>
+                    <p>Cuando un auto toma una curva, el motor físico debe aplicar una fuerza hacia el centro de la curva para que el vehículo no salga volando por inercia.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Concepto Físico Aplicado</h4>
+                    <div class="equation">
+                        F_c = m · v² / r<br>
+                        o<br>
+                        a_c = v² / r  (aceleración centrípeta)
+                    </div>
+                    <p>Donde <strong>F_c</strong> es la fuerza centrípeta, <strong>m</strong> la masa, <strong>v</strong> la velocidad tangencial y <strong>r</strong> el radio de la curva.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Justificación</h4>
+                    <div class="justification">
+                        <p>Permite que el vehículo se sienta realista al tomar curvas a alta velocidad. Sin esta fuerza, el auto simplemente seguiría en línea recta (primera ley de Newton). Las alternativas sin física (animaciones de giro fijas) no responden a la velocidad ni al radio de la curva.</p>
+                    </div>
+                </div>
+                
+                <div class="support-element">
+                    <h5>Elemento de Apoyo</h5>
+                    <p>Diagrama que muestre un vehículo en una curva con la fuerza centrípeta apuntando hacia el centro, la velocidad tangencial y la trayectoria circular.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEMANA 3 -->
+    <section id="semana3">
+        <div class="container">
+            <h2 class="section-title">Semana 3 • Dinámica</h2>
+            
+            <!-- Tema 4: Fuerza de Fricción -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">4. Fuerza de Fricción</h3>
+                    <span class="week-badge">Semana 3</span>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Ejemplo en Ingeniería de Software</h4>
+                    <p><strong>Caso específico:</strong> Movimiento de un personaje en un videojuego de plataformas (platformer) o un vehículo en un simulador.</p>
+                    <p>Al caminar o frenar, se aplica fricción cinética o estática para que el personaje no se deslice indefinidamente ni se detenga de forma instantánea e irreal.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Concepto Físico Aplicado</h4>
+                    <div class="equation">
+                        F_fricción = μ · N<br><br>
+                        Fricción cinética: f_k = μ_k · N<br>
+                        Fricción estática: f_s ≤ μ_s · N
+                    </div>
+                    <p>Donde <strong>μ</strong> es el coeficiente de fricción y <strong>N</strong> la fuerza normal.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Justificación</h4>
+                    <div class="justification">
+                        <p>La fricción hace que el movimiento se sienta natural y controlable. Sin ella, el personaje seguiría deslizándose para siempre después de soltar las teclas. Usar fricción permite crear mecánicas de juego basadas en momentum y control preciso.</p>
+                    </div>
+                </div>
+                
+                <div class="support-element">
+                    <h5>Elemento de Apoyo</h5>
+                    <p>Diagrama de cuerpo libre de un personaje sobre una superficie, mostrando las fuerzas: peso (mg), normal (N) y fricción (f).</p>
+                </div>
+            </div>
+
+            <!-- Tema 5: Trabajo -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">5. Trabajo</h3>
+                    <span class="week-badge">Semana 3</span>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Ejemplo en Ingeniería de Software</h4>
+                    <p><strong>Caso específico:</strong> Aplicación del Teorema Trabajo-Energía en un motor físico de juego.</p>
+                    <p>Cuando un personaje empuja una caja o un objeto recibe un impulso, el trabajo realizado por la fuerza se convierte en energía cinética del objeto.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Concepto Físico Aplicado</h4>
+                    <div class="equation">
+                        W = F · d · cos(θ)<br><br>
+                        Teorema Trabajo-Energía:<br>
+                        W_neto = ΔK = K_final - K_inicial
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Justificación</h4>
+                    <div class="justification">
+                        <p>Permite que la energía se transfiera de forma consistente entre objetos. Si solo se modifica la velocidad directamente sin calcular trabajo, se rompe la coherencia física del mundo (por ejemplo, una caja liviana y una pesada recibirían el mismo cambio de velocidad con la misma fuerza).</p>
+                    </div>
+                </div>
+                
+                <div class="support-element">
+                    <h5>Elemento de Apoyo</h5>
+                    <p>Diagrama que muestre una fuerza aplicándose sobre un objeto a lo largo de una distancia, con el vector de desplazamiento y el ángulo entre ellos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEMANA 4 -->
+    <section id="semana4">
+        <div class="container">
+            <h2 class="section-title">Semana 4 • Conservación de la Energía</h2>
+            
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">6. Conservación de la Energía</h3>
+                    <span class="week-badge">Semana 4</span>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Ejemplo en Ingeniería de Software</h4>
+                    <p><strong>Caso específico:</strong> Motor físico de un videojuego (Unity Physics, Godot, o motor custom como Box2D).</p>
+                    <p>En un juego de plataformas o de física, la energía cinética y potencial del jugador y los objetos se conserva (o se maneja de forma controlada) durante saltos, caídas y colisiones.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Concepto Físico Aplicado</h4>
+                    <div class="equation">
+                        E_mecánica = K + U<br>
+                        K = ½ m v² (energía cinética)<br>
+                        U = m g h (energía potencial gravitatoria)<br><br>
+                        En sistemas conservativos: E_inicial = E_final
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Justificación</h4>
+                    <div class="justification">
+                        <p>Permite crear mundos coherentes donde la energía no aparece ni desaparece de forma mágica. El jugador puede usar la altura para ganar velocidad (y viceversa). Sin conservación de energía, los saltos y movimientos se sentirían arbitrarios y poco satisfactorios.</p>
+                    </div>
+                </div>
+                
+                <div class="support-element">
+                    <h5>Elemento de Apoyo: Visualización recomendada</h5>
+                    <p>Gráfica o simulación que muestre cómo la energía cinética y potencial se transforman durante un salto (la energía total se mantiene aproximadamente constante si se ignora la fricción del aire).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEMANA 5 -->
+    <section id="semana5">
+        <div class="container">
+            <h2 class="section-title">Semana 5 • Impulso y Colisiones</h2>
+            
+            <!-- Tema 7: Impulso (Propulsión a chorro) -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">7. Impulso - Propulsión a Chorro</h3>
+                    <span class="week-badge">Semana 5</span>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Ejemplo en Ingeniería de Software</h4>
+                    <p><strong>Caso específico:</strong> Simulación de naves espaciales o cohetes en un juego o simulador (como en Kerbal Space Program o juegos de naves).</p>
+                    <p>La nave expulsa masa (combustible) hacia atrás a alta velocidad, generando un impulso hacia adelante que la impulsa (tercera ley de Newton + conservación del momento).</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Concepto Físico Aplicado</h4>
+                    <div class="equation">
+                        Impulso = Δp = F · Δt = m · Δv<br><br>
+                        Ecuación del cohete (Tsiolkovsky):<br>
+                        Δv = v_e · ln(m₀ / m_f)
+                    </div>
+                    <p>Donde <strong>v_e</strong> es la velocidad de escape de los gases, <strong>m₀</strong> masa inicial y <strong>m_f</strong> masa final.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Justificación</h4>
+                    <div class="justification">
+                        <p>Permite simular correctamente el comportamiento de naves en el vacío (donde no hay aire para "empujar"). Usar sistemas de propulsión simplificados (velocidad constante) no permite gestionar combustible, masa variable ni maniobras realistas en el espacio.</p>
+                    </div>
+                </div>
+                
+                <div class="support-element">
+                    <h5>Elemento de Apoyo</h5>
+                    <p>Diagrama de una nave expulsando gases hacia atrás con el vector de impulso resultante hacia adelante, mostrando cambio de masa y velocidad.</p>
+                </div>
+            </div>
+
+            <!-- Tema 8: Colisiones Inelásticas -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">8. Colisiones Inelásticas</h3>
+                    <span class="week-badge">Semana 5</span>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Ejemplo en Ingeniería de Software</h4>
+                    <p><strong>Caso específico:</strong> Juegos con mecánicas de destrucción o fusión de objetos (como en Angry Birds, juegos de demolición, o mecánicas donde dos objetos se pegan al colisionar).</p>
+                    <p>Dos objetos colisionan y se unen o deforman permanentemente, conservando el momento lineal total pero perdiendo energía cinética.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Concepto Físico Aplicado</h4>
+                    <div class="equation">
+                        Conservación del momento:<br>
+                        m₁v₁ + m₂v₂ = (m₁ + m₂) v_final<br><br>
+                        La energía cinética NO se conserva:<br>
+                        K_inicial > K_final
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Justificación</h4>
+                    <div class="justification">
+                        <p>Permite crear mecánicas de juego interesantes donde los objetos se pegan, se rompen o se deforman de forma realista. Usar solo colisiones elásticas haría que todo rebotara perfectamente, perdiendo realismo en muchos escenarios (choques de autos, impactos de proyectiles, etc.).</p>
+                    </div>
+                </div>
+                
+                <div class="support-element">
+                    <h5>Elemento de Apoyo: Simulación recomendada</h5>
+                    <p>Pequeña simulación con Canvas donde dos círculos colisionan y se fusionan (o reducen su velocidad drásticamente), mostrando la diferencia entre colisión elástica e inelástica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Portafolio de Evidencias - Física Aplicada al Software</strong></p>
+            <p style="margin-top: 0.5rem; opacity: 0.8; font-size: 0.9rem;">
+                Avance 1 • Universidad CENFOTEC • 2026
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Simple console message for developer
+        console.log('%c[Portafolio Física] Página cargada correctamente. Listo para agregar simulaciones interactivas.', 'color: #718096');
+    </script>
+</body>
+</html>
