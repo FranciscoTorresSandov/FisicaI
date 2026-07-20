@@ -58,8 +58,9 @@
         
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.6rem;
             list-style: none;
+            flex-wrap: wrap;
         }
         
         .nav-links a {
@@ -67,6 +68,7 @@
             color: var(--dark);
             font-weight: 500;
             transition: color 0.2s;
+            font-size: 0.95rem;
         }
         
         .nav-links a:hover {
@@ -197,18 +199,6 @@
             font-size: 1rem;
         }
         
-        /* Grid for multiple topics in same week */
-        .topics-grid {
-            display: grid;
-            gap: 2rem;
-        }
-        
-        @media (min-width: 900px) {
-            .topics-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
         /* Footer */
         footer {
             background-color: var(--primary);
@@ -238,6 +228,8 @@
                     <li><a href="#semana3">Semana 3</a></li>
                     <li><a href="#semana4">Semana 4</a></li>
                     <li><a href="#semana5">Semana 5</a></li>
+                    <li><a href="#semana6">Semana 6</a></li>
+                    <li><a href="#semana8">Semana 8</a></li>
                 </ul>
             </div>
         </div>
@@ -248,7 +240,9 @@
         <div class="container">
             <h1>Portafolio de Evidencias</h1>
             <p>Física Aplicada al Desarrollo de Software</p>
-            <p style="margin-top: 1rem; font-size: 1rem; opacity: 0.9;">Avance 1 • Semanas 1-5 • Cinemática, Dinámica y Conservación</p>
+            <p style="margin-top: 1rem; font-size: 1rem; opacity: 0.9;">
+                
+            </p>
         </div>
     </header>
 
@@ -580,12 +574,176 @@
         </div>
     </section>
 
+    <!-- ===================== SEMANA 6 (NUEVA) ===================== -->
+    <section id="semana6">
+        <div class="container">
+            <h2 class="section-title">Semana 6 • Momento Angular y Torque</h2>
+            
+            <!-- Tema: Conservación del Momento Angular -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">9. Conservación del Momento Angular</h3>
+                    <span class="week-badge">Semana 6</span>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Ejemplo en Ingeniería de Software</h4>
+                    <p><strong>Caso específico:</strong> Simulación de control de actitud de un satélite o nave espacial (tipo Kerbal Space Program o un motor de física espacial propio).</p>
+                    <p>Cuando el satélite despliega paneles solares o mueve un brazo robótico, su momento de inercia cambia. El motor físico debe aumentar o disminuir la velocidad angular para conservar el momento angular total (sin necesidad de aplicar torque externo).</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Concepto Físico Aplicado</h4>
+                    <div class="equation">
+                        L = I · ω<br><br>
+                        Si el torque neto es cero: L_inicial = L_final<br>
+                        I₁ · ω₁ = I₂ · ω₂<br><br>
+                        Por lo tanto: ω₂ = (I₁ / I₂) · ω₁
+                    </div>
+                    <p>Donde <strong>L</strong> es el momento angular, <strong>I</strong> el momento de inercia y <strong>ω</strong> la velocidad angular.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Justificación</h4>
+                    <div class="justification">
+                        <p>Permite que el satélite gire más rápido al contraer sus paneles o más lento al extenderlos, de forma natural y realista. Una solución no-física (cambiar la velocidad angular de forma arbitraria) rompería la coherencia del sistema y haría imposible simular correctamente maniobras de control de actitud o efectos de masa variable.</p>
+                    </div>
+                </div>
+                
+                <div class="support-element">
+                    <h5>Elemento de Apoyo: Diagrama conceptual</h5>
+                    <p>Diagrama de un satélite con paneles plegados y desplegados, mostrando cómo disminuye el momento de inercia (I) y aumenta la velocidad angular (ω) manteniendo L constante.</p>
+                </div>
+            </div>
+
+            <!-- Tema: Torque -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">10. Torque</h3>
+                    <span class="week-badge">Semana 6</span>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Ejemplo en Ingeniería de Software</h4>
+                    <p><strong>Caso específico:</strong> Aplicación de torque a un Rigidbody en Unity o Godot para simular el giro de un vehículo, una puerta, un brazo robótico o una rueda.</p>
+                    <p>Cuando el jugador acelera un auto o abre una puerta con fuerza, el motor físico calcula el torque generado por la fuerza aplicada a cierta distancia del eje de rotación y actualiza la aceleración angular del objeto.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Concepto Físico Aplicado</h4>
+                    <div class="equation">
+                        τ = r × F<br>
+                        τ = r · F · sin(θ)<br><br>
+                        Relación con aceleración angular:<br>
+                        τ = I · α
+                    </div>
+                    <p>Donde <strong>τ</strong> es el torque, <strong>r</strong> el vector de posición desde el eje, <strong>F</strong> la fuerza y <strong>α</strong> la aceleración angular.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Justificación</h4>
+                    <div class="justification">
+                        <p>Permite que los objetos giren de forma realista según dónde se aplica la fuerza y con qué intensidad. Usar rotaciones predefinidas o velocidades angulares fijas no responde a cambios de fuerza, punto de aplicación ni masa del objeto, rompiendo la interactividad física del juego o simulador.</p>
+                    </div>
+                </div>
+                
+                <div class="support-element">
+                    <h5>Elemento de Apoyo</h5>
+                    <p>Diagrama de un objeto (por ejemplo una puerta o una rueda) con el vector fuerza (F), el brazo de palanca (r) y el torque resultante (τ) perpendicular al plano.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SEMANA 8 ===================== -->
+    <section id="semana8">
+        <div class="container">
+            <h2 class="section-title">Semana 8 • Gravitación y Exploración Espacial</h2>
+            
+            <!-- Tema: Satélites artificiales -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">11. Satélites Artificiales</h3>
+                    <span class="week-badge">Semana 8</span>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Ejemplo en Ingeniería de Software</h4>
+                    <p><strong>Caso específico:</strong> Simulador de órbitas de satélites (herramienta educativa o juego espacial) que calcula la velocidad orbital y el período necesarios para mantener una órbita circular a cierta altura.</p>
+                    <p>El usuario elige la altitud del satélite y el software calcula automáticamente la velocidad requerida y el tiempo que tarda en completar una órbita, actualizando la trayectoria en tiempo real.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Concepto Físico Aplicado</h4>
+                    <div class="equation">
+                        Velocidad orbital circular:<br>
+                        v = √(G · M / r)<br><br>
+                        Período orbital (3ª Ley de Kepler):<br>
+                        T = 2π · √(r³ / (G · M))
+                    </div>
+                    <p>Donde <strong>G</strong> es la constante gravitacional, <strong>M</strong> la masa del planeta y <strong>r</strong> el radio de la órbita (desde el centro del planeta).</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Justificación</h4>
+                    <div class="justification">
+                        <p>Permite predecir y visualizar correctamente cuándo un satélite permanecerá en órbita estable o se estrellará. Usar velocidades o períodos fijos (sin física) no permite experimentar con diferentes altitudes ni entender por qué los satélites geoestacionarios deben estar a ~36 000 km de altura.</p>
+                    </div>
+                </div>
+                
+                <div class="support-element">
+                    <h5>Elemento de Apoyo: Visualización recomendada</h5>
+                    <p>Gráfico o simulación que muestre cómo cambia la velocidad orbital y el período al variar la altura del satélite sobre la Tierra.</p>
+                </div>
+            </div>
+
+            <!-- Tema: Análisis / Exploración espacial -->
+            <div class="topic-card">
+                <div class="topic-header">
+                    <h3 class="topic-title">12. Análisis / Exploración Espacial</h3>
+                    <span class="week-badge">Semana 8</span>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Ejemplo en Ingeniería de Software</h4>
+                    <p><strong>Caso específico:</strong> Cálculo de trayectorias de transferencia de Hohmann en un simulador de misiones espaciales (tipo Kerbal Space Program o una herramienta de planificación de misiones).</p>
+                    <p>El software calcula los dos impulsos necesarios para transferir una nave desde una órbita baja terrestre hasta una órbita más alta (o hacia la Luna/Marte) minimizando el Δv total.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Concepto Físico Aplicado</h4>
+                    <div class="equation">
+                        Radio de la órbita de transferencia:<br>
+                        a_t = (r₁ + r₂) / 2<br><br>
+                        Velocidades en los periapsis y apoapsis:<br>
+                        v₁ = √(G M (2/r₁ − 1/a_t))<br>
+                        v₂ = √(G M (2/r₂ − 1/a_t))<br><br>
+                        Δv total = |v₁ − v_circular₁| + |v_circular₂ − v₂|
+                    </div>
+                    <p>Donde <strong>r₁</strong> y <strong>r₂</strong> son los radios de las órbitas inicial y final, y <strong>a_t</strong> el semieje mayor de la elipse de transferencia.</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Justificación</h4>
+                    <div class="justification">
+                        <p>Permite planificar misiones espaciales de forma realista y eficiente (mínimo consumo de combustible). Usar trayectorias predefinidas o impulsos fijos no permite al usuario experimentar con diferentes órbitas ni entender por qué la transferencia de Hohmann es la más económica en Δv.</p>
+                    </div>
+                </div>
+                
+                <div class="support-element">
+                    <h5>Elemento de Apoyo</h5>
+                    <p>Diagrama de la órbita de transferencia de Hohmann mostrando la órbita inicial, la elipse de transferencia y la órbita final, con los dos puntos de impulso (periapsis y apoapsis).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <p><strong>Portafolio de Evidencias - Física Aplicada al Software</strong></p>
             <p style="margin-top: 0.5rem; opacity: 0.8; font-size: 0.9rem;">
-                Avance 1 • Universidad CENFOTEC • 2026
+                Avance 2 • Semanas 1-8 • Universidad CENFOTEC • 2026
             </p>
         </div>
     </footer>
@@ -605,8 +763,7 @@
             });
         });
         
-        // Simple console message for developer
-        console.log('%c[Portafolio Física] Página cargada correctamente. Listo para agregar simulaciones interactivas.', 'color: #718096');
+        console.log('%c[Portafolio Física] Avance 2 cargado correctamente.', 'color: #3182ce');
     </script>
 </body>
 </html>
